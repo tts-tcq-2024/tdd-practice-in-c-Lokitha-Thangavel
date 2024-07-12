@@ -18,14 +18,14 @@ int tokenizeString(const char* num)
     return sum;
 }
 
-int isSingleInput(const char* input)
-{
-  if (input[1] == '\0') 
-  {
-     return 1; 
-  }
-  return 0;
-}
+// int isSingleInput(const char* input)
+// {
+//   if (input[1] == '\0') 
+//   {
+//      return 1; 
+//   }
+//   return 0;
+// }
 
 int isEmptyString(const char* input)
 {
