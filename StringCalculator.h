@@ -9,7 +9,7 @@ int isEmptyString(const char* input)
 
 int add (const char* str)
 {
-  if(isEmptyString(str) == TRUE)
+  if(isEmptyString(str))
   {
      return 0;
   }
