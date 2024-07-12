@@ -9,9 +9,9 @@ int isNumGreaterThanThousand(int num)
     }
     return 0;
 }
-int tokenizeString(const char* num)
+int tokenizeString(const char* number)
 {
-    char* inputCopy = strdup(num);
+    char* inputCopy = strdup(number);
     const char* delimiters = ",\n";
     char* token = strtok(inputCopy, delimiters);
     int sum = 0;
@@ -22,8 +22,7 @@ int tokenizeString(const char* num)
         if(!isNumGreaterThanThousand(num))
         {
             sum += num;
-        }
-        
+        } 
         token = strtok(NULL, delimiters);
     }
 
