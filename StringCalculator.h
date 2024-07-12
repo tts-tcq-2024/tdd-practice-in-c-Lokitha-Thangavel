@@ -19,7 +19,7 @@ int tokenizeString(const char* num)
 
     while (token != NULL) {
         num = atoi(token);
-        if(!isNumGreaterThanThousand(num)
+        if(!isNumGreaterThanThousand(num))
         {
             sum += num;
         }
