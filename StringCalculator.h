@@ -4,12 +4,13 @@
 int tokenizeString(const char* num)
 {
     char* inputCopy = strdup(num);
-    char* token = strtok(inputCopy, ",");
+    const char* delimiters = ",\n";
+    char* token = strtok(inputCopy, delimiters);
     int sum = 0;
 
     while (token != NULL) {
         sum += atoi(token);
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimiters);
     }
 
     free(inputCopy);
