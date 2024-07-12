@@ -44,9 +44,10 @@ const char* extractDelimiters(const char* numbers, const char** delimiters)
 
 int tokenizeString(const char* number)
 {
-    char* inputCopy = strdup(number);
+   
     const char* delimiters = ",\n";
     const char* numberStart = extractDelimiters(number, &delimiters);
+     char* inputCopy = strdup(numberStart);
     char* token = strtok(inputCopy, delimiters);
     int sum = 0;
     int num = 0;
@@ -55,9 +56,9 @@ int tokenizeString(const char* number)
 
     while (token != NULL) {
         num = atoi(token);
-        if(!isNumGreaterThanThousand(numberStart))
+        if(!isNumGreaterThanThousand(num))
         {
-            sum += numberStart;
+            sum += num;
         } 
         token = strtok(NULL, delimiters);
     }
