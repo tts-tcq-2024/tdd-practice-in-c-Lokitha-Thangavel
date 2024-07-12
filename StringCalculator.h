@@ -1,3 +1,5 @@
+#include<stdbool.h>
+
 bool isEmptyString(const char* input)
 {
   if (input == NULL || input[0] == '\0') 
