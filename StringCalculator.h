@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 int tokenizeString(const char* num)
 {
     char* inputCopy = strdup(num);
@@ -17,15 +15,6 @@ int tokenizeString(const char* num)
     free(inputCopy);
     return sum;
 }
-
-// int isSingleInput(const char* input)
-// {
-//   if (input[1] == '\0') 
-//   {
-//      return 1; 
-//   }
-//   return 0;
-// }
 
 int isEmptyString(const char* input)
 {
@@ -42,13 +31,8 @@ int add (const char* str)
   {
      return 0;
   }
-  // else if(isSingleInput(str))
-  // {
-  //    return int(str);
-  // }
   else
   {
     return tokenizeString(str);
   }
-  return -1;
 }
