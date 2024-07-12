@@ -10,36 +10,32 @@ int isNumGreaterThanThousand(int num)
     return 0;
 }
 
-const char* extractDelimiters(const char* numbers, const char** delimiters) 
-{    
-    const char* numberStart = numbers;
+char* extractCustomDelimiter(const char* start, const char* end, int isBracketed) {
+    size_t delimiterLength = end - start + (isBracketed ? -1 : 1);
+    char* customDelimiter = (char*)malloc(delimiterLength + 1);
+    strncpy(customDelimiter, start, delimiterLength);
+    customDelimiter[delimiterLength] = '\0';
+    return customDelimiter;
+}
 
-    if (numbers[0] == '/' && numbers[1] == '/') 
-    {
-        const char* delimiterEnd = strstr(numbers, "\n");
-        if (delimiterEnd != NULL) 
-        {
-            numberStart = delimiterEnd + 1;
-            size_t delimiterLength;
-            if (numbers[2] == '[') 
-            {
-                delimiterLength = delimiterEnd - numbers - 3;
-                char* customDelimiter = (char*)malloc(delimiterLength);
-                strncpy(customDelimiter, numbers + 3, delimiterLength);
-                customDelimiter[delimiterLength - 1] = '\0';
-                *delimiters = customDelimiter;
-            } 
-            else 
-            {
-                delimiterLength = delimiterEnd - numbers - 2;
-                char* customDelimiter = (char*)malloc(delimiterLength + 1);
-                strncpy(customDelimiter, numbers + 2, delimiterLength);
-                customDelimiter[delimiterLength] = '\0';
-                *delimiters = customDelimiter;
-            }
-        }
+const char* extractDelimiters(const char* numbers, const char** delimiters) {
+    if (numbers[0] != '/' || numbers[1] != '/') {
+        return numbers; // No custom delimiter format
     }
-    return numberStart;
+
+    const char* delimiterEnd = strstr(numbers, "\n");
+    if (delimiterEnd == NULL) {
+        return numbers; // No newline found after custom delimiter declaration
+    }
+
+    const char* delimiterStart = numbers + 2;
+    int isBracketed = (delimiterStart[0] == '[');
+    if (isBracketed) {
+        delimiterStart++;
+    }
+    *delimiters = extractCustomDelimiter(delimiterStart, delimiterEnd - 1, isBracketed);
+
+    return delimiterEnd + 1;
 }
 
 int tokenizeString(const char* number)
