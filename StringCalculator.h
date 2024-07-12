@@ -1,6 +1,6 @@
 bool isEmptyString(const char* input)
 {
-  if (str == NULL || str[0] == '\0') 
+  if (input == NULL || input[0] == '\0') 
   {
      return TRUE; // The string is empty
   }
