@@ -48,7 +48,7 @@ int add (const char* str)
   // }
   else
   {
-    tokenizeString(str);
+    return tokenizeString(str);
   }
   return -1;
 }
