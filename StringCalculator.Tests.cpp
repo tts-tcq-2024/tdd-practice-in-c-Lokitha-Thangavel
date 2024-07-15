@@ -63,3 +63,10 @@ TEST(StringCalculatorAddTests, IgnoreNegativeNumbers) {
     int result = add(input);
     ASSERT_EQ(result, expectedresult);
 }
+
+TEST(StringCalculatorAddTests, EmptyNewlineDelimiter) {
+    int expectedresult = 6;
+    const char*  input = "1,2\n";
+    int result =add(input);
+    ASSERT_EQ(result, expectedresult);
+}
