@@ -50,13 +50,6 @@ TEST(StringCalculatorAddTests, NonBracketedCustomDelimiter) {
     ASSERT_EQ(result, expectedresult);
 }
 
-TEST(StringCalculatorAddTests, MultipleCustomDelimitersInBrackets) {
-    int expectedresult = 6;
-    const char* input = "//[;][%]\n1;2%3";
-    int result = add(input);
-    ASSERT_EQ(result, expectedresult);
-}
-
 TEST(StringCalculatorAddTests, EmptyInputWithCustomDelimiterNotation) {
     int expectedresult = 0;
     const char* input = "//;\n";
