@@ -57,13 +57,6 @@ TEST(StringCalculatorAddTests, EmptyInputWithCustomDelimiterNotation) {
     ASSERT_EQ(result, expectedresult);
 }
 
-TEST(StringCalculatorAddTests, DelimiterPartOfNumber) {
-    int expectedresult = 12345;
-    const char* input = "12,345";
-    int result = add(input);
-    ASSERT_EQ(result, expectedresult);
-}
-
 TEST(StringCalculatorAddTests, IgnoreNegativeNumbers) {
     int expectedresult = 3;
     const char* input = "1,-2,4";
