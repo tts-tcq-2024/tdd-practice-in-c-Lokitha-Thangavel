@@ -1,82 +1,45 @@
 #include <stdlib.h>
 #include <string.h>
 
-int checkDelimiterEnd(const char* numbers)
-{
-    if (strstr(numbers, "\n") == NULL) 
-    {
-        return 1; 
-    }
-    return 0;
-}
-
-int checkDelimiters(const char* numbers)
-{
-    if (numbers[0] != '/' || numbers[1] != '/') 
-    {
-        return 1; 
-    }
-    return checkDelimiterEnd(numbers);
-}
-
 int isNumGreaterThanThousand(int num)
 {
     if(num > 1000)
     {
-        return 1;
+        return 0;
     }
-    return 0;
+    return num;
 }
 
-char* extractCustomDelimiter(const char* start, const char* end, int isBracketed) 
+int tokenizeString(char *input)
 {
-    size_t delimiterLength = end - start + (isBracketed ? -1 : 1);
-    char* customDelimiter = (char*)malloc(delimiterLength + 1);
-    strncpy(customDelimiter, start, delimiterLength);
-    customDelimiter[delimiterLength] = '\0';
-    return customDelimiter;
-}
+    char *token;
+    int total = 0;
+    const char delimiters[] = "$#\n:,;//\\&#%";
 
-const char* extractDelimiters(const char* numbers, const char** delimiters) 
-{
-
-    if(checkDelimiters(numbers))
-    {
-        return numbers;
-    }
-    const char* delimiterStart = numbers + 2;
-    const char* delimiterEnd = strstr(numbers, "\n");
-    int isBracketed = (delimiterStart[0] == '[');
-    if (isBracketed) {
-        delimiterStart++;
-    }
-    *delimiters = extractCustomDelimiter(delimiterStart, delimiterEnd - 1, isBracketed);
-
-    return delimiterEnd + 1;
-}
-
-int tokenizeString(const char* number)
-{
-   
-    const char* delimiters = ",\n";
-    const char* numberStart = extractDelimiters(number, &delimiters);
-     char* inputCopy = strdup(numberStart);
-    char* token = strtok(inputCopy, delimiters);
-    int sum = 0;
-    int num = 0;
-
+    token = strtok(input, delimiters);
     while (token != NULL) 
     {
-        num = atoi(token);
-        if(!isNumGreaterThanThousand(num))
-        {
-            sum += num;
-        } 
+        // Convert token to integer using atoi
+        int num = atoi(token);
+
+        total += isNumGreaterThanThousand(num);
+        // Get the next token
         token = strtok(NULL, delimiters);
     }
 
-    free(inputCopy);
-    return sum;
+    return total;
+}
+
+int createCopy(const char *input)
+{
+    if (strlen(input) == 1)
+    {
+        return atoi(input);
+    }
+    // Create a modifiable copy of the input
+    char inputCopy[100];
+    strcpy(inputCopy, input);
+    return tokenizeString(inputCopy); // Provide sum only if it is not a single character
 }
 
 int isEmptyString(const char* input)
@@ -96,6 +59,6 @@ int add (const char* str)
   }
   else
   {
-    return tokenizeString(str);
+    return createCopy(str);
   }
 }
