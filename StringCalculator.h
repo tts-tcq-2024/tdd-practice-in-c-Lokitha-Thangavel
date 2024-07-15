@@ -1,6 +1,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
+int checkDelimiters(const char** numbers)
+{
+    if (numbers[0] != '/' || numbers[1] != '/') 
+    {
+        return 1; 
+    }
+
+    if (strstr(numbers, "\n") == NULL) 
+    {
+        return 1; 
+    }
+    return 0;
+}
+
 int isNumGreaterThanThousand(int num)
 {
     if(num > 1000)
@@ -10,7 +26,8 @@ int isNumGreaterThanThousand(int num)
     return 0;
 }
 
-char* extractCustomDelimiter(const char* start, const char* end, int isBracketed) {
+char* extractCustomDelimiter(const char* start, const char* end, int isBracketed) 
+{
     size_t delimiterLength = end - start + (isBracketed ? -1 : 1);
     char* customDelimiter = (char*)malloc(delimiterLength + 1);
     strncpy(customDelimiter, start, delimiterLength);
@@ -18,16 +35,13 @@ char* extractCustomDelimiter(const char* start, const char* end, int isBracketed
     return customDelimiter;
 }
 
-const char* extractDelimiters(const char* numbers, const char** delimiters) {
-    if (numbers[0] != '/' || numbers[1] != '/') {
-        return numbers; // No custom delimiter format
-    }
+const char* extractDelimiters(const char* numbers, const char** delimiters) 
+{
 
-    const char* delimiterEnd = strstr(numbers, "\n");
-    if (delimiterEnd == NULL) {
-        return numbers; // No newline found after custom delimiter declaration
+    if(checkDelimiters(numbers))
+    {
+        return numbers;
     }
-
     const char* delimiterStart = numbers + 2;
     int isBracketed = (delimiterStart[0] == '[');
     if (isBracketed) {
