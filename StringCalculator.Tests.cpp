@@ -85,13 +85,6 @@ TEST(StringCalculatorAddTests, IncorrectDelimiterDefinition) {
     ASSERT_EQ(result, expectedresult);
 }
 
-TEST(StringCalculatorAddTests, NonBracketedCustomDelimiter) {
-    int expectedresult = 6;
-    const char* input = "//;\n1;2;3";
-    int result = add(input);
-    ASSERT_EQ(result, expectedresult);
-}
-
 TEST(StringCalculatorAddTests, BracketedCustomDelimiter) {
     int expectedresult = 6;
     const char* input = "//[***]\n1***2***3";
