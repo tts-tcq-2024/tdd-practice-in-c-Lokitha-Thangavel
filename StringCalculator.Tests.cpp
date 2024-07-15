@@ -42,3 +42,41 @@ TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
     int result = add(input);
     ASSERT_EQ(result, expectedresult);
 }
+
+#include <gtest/gtest.h>
+#include "StringCalculator.h"
+
+TEST(StringCalculatorAddTests, NonBracketedCustomDelimiter) {
+    int expectedresult = 6;
+    const char* input = "//;\n1;2;3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, MultipleCustomDelimitersInBrackets) {
+    int expectedresult = 6;
+    const char* input = "//[;][%]\n1;2%3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, EmptyInputWithCustomDelimiterNotation) {
+    int expectedresult = 0;
+    const char* input = "//;\n";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, DelimiterPartOfNumber) {
+    int expectedresult = 12345;
+    const char* input = "12,345";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, IgnoreNegativeNumbers) {
+    int expectedresult = 3;
+    const char* input = "1,-2,4";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
