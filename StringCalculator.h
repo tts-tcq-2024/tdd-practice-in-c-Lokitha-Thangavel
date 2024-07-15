@@ -3,7 +3,7 @@
 
 
 
-int checkDelimiters(const char** numbers)
+int checkDelimiters(const char* numbers)
 {
     if (numbers[0] != '/' || numbers[1] != '/') 
     {
