@@ -43,6 +43,7 @@ const char* extractDelimiters(const char* numbers, const char** delimiters)
         return numbers;
     }
     const char* delimiterStart = numbers + 2;
+    const char* delimiterEnd = strstr(numbers, "\n");
     int isBracketed = (delimiterStart[0] == '[');
     if (isBracketed) {
         delimiterStart++;
@@ -62,9 +63,8 @@ int tokenizeString(const char* number)
     int sum = 0;
     int num = 0;
 
-    
-
-    while (token != NULL) {
+    while (token != NULL) 
+    {
         num = atoi(token);
         if(!isNumGreaterThanThousand(num))
         {
