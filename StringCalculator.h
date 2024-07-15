@@ -1,7 +1,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+int checkDelimiterEnd(const char* numbers)
+{
+    if (strstr(numbers, "\n") == NULL) 
+    {
+        return 1; 
+    }
+    return 0;
+}
 
 int checkDelimiters(const char* numbers)
 {
@@ -9,12 +16,7 @@ int checkDelimiters(const char* numbers)
     {
         return 1; 
     }
-
-    if (strstr(numbers, "\n") == NULL) 
-    {
-        return 1; 
-    }
-    return 0;
+    return checkDelimiterEnd(numbers);
 }
 
 int isNumGreaterThanThousand(int num)
