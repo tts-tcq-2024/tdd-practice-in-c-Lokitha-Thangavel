@@ -70,3 +70,38 @@ TEST(StringCalculatorAddTests, EmptyNewlineDelimiter) {
     int result =add(input);
     ASSERT_EQ(result, expectedresult);
 }
+
+TEST(StringCalculatorAddTests, InputWithoutNewLineAfterDelimiters) {
+    int expectedresult = 6;
+    const char* input = "//;1;2;3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, IncorrectDelimiterDefinition) {
+    int expectedresult = 0;
+    const char* input = "//;1,2;3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, NonBracketedCustomDelimiter) {
+    int expectedresult = 6;
+    const char* input = "//;\n1;2;3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, BracketedCustomDelimiter) {
+    int expectedresult = 6;
+    const char* input = "//[***]\n1***2***3";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, NullInput) {
+    int expectedresult = 0;
+    const char* input = NULL;
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
