@@ -43,9 +43,6 @@ TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
     ASSERT_EQ(result, expectedresult);
 }
 
-#include <gtest/gtest.h>
-#include "StringCalculator.h"
-
 TEST(StringCalculatorAddTests, NonBracketedCustomDelimiter) {
     int expectedresult = 6;
     const char* input = "//;\n1;2;3";
